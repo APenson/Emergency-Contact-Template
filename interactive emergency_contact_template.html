@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Contact Template - Dementia Home Care</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.2em;
+        }
+        .header p {
+            margin: 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .emergency-alert {
+            background: #dc3545;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .section {
+            background: white;
+            margin: 25px 0;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .section h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            font-size: 1.4em;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+        .critical-info {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        @media (max-width: 600px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .contact-item {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .contact-item h4 {
+            color: #2c3e50;
+            margin: 0 0 10px 0;
+            font-size: 1.1em;
+        }
+        .contact-detail {
+            margin: 5px 0;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+        }
+        .contact-detail strong {
+            color: #34495e;
+            min-width: 100px;
+            display: inline-block;
+        }
+        .form-input {
+            border: 2px solid #3498db;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-family: inherit;
+            font-size: 0.9em;
+            flex: 1;
+            margin-left: 5px;
+            background: white;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #2980b9;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+        .form-textarea {
+            border: 2px solid #3498db;
+            padding: 8px;
+            border-radius: 3px;
+            font-family: inherit;
+            font-size: 0.9em;
+            width: 100%;
+            resize: vertical;
+            min-height: 60px;
+            margin: 10px 0;
+        }
+        .form-textarea:focus {
+            outline: none;
+            border-color: #2980b9;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+        .insurance-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .insurance-table th,
+        .insurance-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+        }
+        .insurance-table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .insurance-table input {
+            border: 1px solid #ccc;
+            padding: 4px 8px;
+            width: 100%;
+            font-size: 0.9em;
+        }
+        .notes-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .action-buttons {
+            text-align: center;
+            margin: 30px 0;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #2980b9;
+        }
+        .btn-secondary {
+            background: #95a5a6;
+        }
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+        .print-friendly {
+            color: #666;
+            font-size: 0.9em;
+            text-align: center;
+            margin-top: 30px;
+            font-style: italic;
+        }
+        @media print {
+            body {
+                background-color: white;
+                font-size: 12px;
+            }
+            .header {
+                background: #2c3e50 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            .section {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                page-break-inside: avoid;
+            }
+            .action-buttons {
+                display: none;
+            }
+            .form-input, .form-textarea, .insurance-table input {
+                border: none;
+                border-bottom: 1px solid #ccc;
+                background: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Emergency Contact Template</h1>
+        <p>Essential Information for Dementia Home Care - Keep Multiple Copies Available</p>
+    </div>
+
+    <div class="emergency-alert">
+        🚨 IN CASE OF EMERGENCY, CALL 911 FIRST 🚨<br>
+        Then refer to this contact sheet for additional support
+    </div>
+
+    <div class="action-buttons">
+        <button class="btn" onclick="saveData()">💾 Save Information</button>
+        <button class="btn" onclick="loadData()">📁 Load Saved Information</button>
+        <button class="btn btn-secondary" onclick="window.print()">🖨️ Print Template</button>
+        <button class="btn btn-secondary" onclick="clearForm()">🗑️ Clear All Fields</button>
+    </div>
+
+    <div class="section">
+        <h2>Patient Information</h2>
+        <div class="critical-info">
+            <strong>Critical Details to Share with Emergency Responders</strong>
+        </div>
+        
+        <div class="contact-detail"><strong>Full Name:</strong> <input type="text" class="form-input" id="patient-name"></div>
+        <div class="contact-detail"><strong>Date of Birth:</strong> <input type="date" class="form-input" id="patient-dob"></div>
+        <div class="contact-detail"><strong>Address:</strong> <input type="text" class="form-input" id="patient-address"></div>
+        <div class="contact-detail"><strong>Phone:</strong> <input type="tel" class="form-input" id="patient-phone"></div>
+        
+        <div class="contact-detail"><strong>Dementia Type:</strong> <input type="text" class="form-input" id="dementia-type"></div>
+        <div class="contact-detail"><strong>Stage/Severity:</strong> <input type="text" class="form-input" id="dementia-stage"></div>
+        <div class="contact-detail"><strong>Primary Language:</strong> <input type="text" class="form-input" id="primary-language"></div>
+        <div class="contact-detail"><strong>Preferred Hospital:</strong> <input type="text" class="form-input" id="preferred-hospital"></div>
+        
+        <div class="notes-box">
+            <strong>Key Medical Alerts:</strong><br>
+            Allergies: <input type="text" class="form-input" id="allergies"><br><br>
+            Current Medications (attach separate list): <input type="text" class="form-input" id="medications"><br><br>
+            Medical Conditions: <input type="text" class="form-input" id="medical-conditions"><br><br>
+            Behavioral Concerns: <input type="text" class="form-input" id="behavioral-concerns">
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Primary Emergency Contacts</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <h4>Primary Family Contact</h4>
+                <div class="contact-detail"><strong>Name:</strong> <input type="text" class="form-input" id="primary-contact-name"></div>
+                <div class="contact-detail"><strong>Relationship:</strong> <input type="text" class="form-input" id="primary-contact-relation"></div>
+                <div class="contact-detail"><strong>Cell Phone:</strong> <input type="tel" class="form-input" id="primary-contact-cell"></div>
+                <div class="contact-detail"><strong>Home Phone:</strong> <input type="tel" class="form-input" id="primary-contact-home"></div>
+                <div class="contact-detail"><strong>Work Phone:</strong> <input type="tel" class="form-input" id="primary-contact-work"></div>
+                <div class="contact-detail"><strong>Email:</strong> <input type="email" class="form-input" id="primary-contact-email"></div>
+            </div>
+            
+            <div class="contact-item">
+                <h4>Secondary Family Contact</h4>
+                <div class="contact-detail"><strong>Name:</strong> <input type="text" class="form-input" id="secondary-contact-name"></div>
+                <div class="contact-detail"><strong>Relationship:</strong> <input type="text" class="form-input" id="secondary-contact-relation"></div>
+                <div class="contact-detail"><strong>Cell Phone:</strong> <input type="tel" class="form-input" id="secondary-contact-cell"></div>
+                <div class="contact-detail"><strong>Home Phone:</strong> <input type="tel" class="form-input" id="secondary-contact-home"></div>
+                <div class="contact-detail"><strong>Work Phone:</strong> <input type="tel" class="form-input" id="secondary-contact-work"></div>
+                <div class="contact-detail"><strong>Email:</strong> <input type="email" class="form-input" id="secondary-contact-email"></div>
+            </div>
+            
+            <div class="contact-item">
+                <h4>Healthcare Power of Attorney</h4>
+                <div class="contact-detail"><strong>Name:</strong> <input type="text" class="form-input" id="healthcare-poa-name"></div>
+                <div class="contact-detail"><strong>Relationship:</strong> <input type="text" class="form-input" id="healthcare-poa-relation"></div>
+                <div class="contact-detail"><strong>Cell Phone:</strong> <input type="tel" class="form-input" id="healthcare-poa-phone"></div>
+                <div class="contact-detail"><strong>Document Location:</strong> <input type="text" class="form-input" id="healthcare-poa-location"></div>
+            </div>
+            
+            <div class="contact-item">
+                <h4>Financial Power of Attorney</h4>
+                <div class="contact-detail"><strong>Name:</strong> <input type="text" class="form-input" id="financial-poa-name"></div>
+                <div class="contact-detail"><strong>Relationship:</strong> <input type="text" class="form-input" id="financial-poa-relation"></div>
+                <div class="contact-detail"><strong>Cell Phone:</strong> <input type="tel" class="form-input" id="financial-poa-phone"></div>
+                <div class="contact-detail"><strong>Document Location:</strong> <input type="text" class="form-input" id="financial-poa-location"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Medical Team Contacts</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <h4>Primary Care Physician</h4>
+                <div class="contact-detail"><strong>Doctor Name:</strong> <input type="text" class="form-input" id="pcp-name"></div>
+                <div class="contact-detail"><strong>Practice:</strong> <input type="text" class="form-input" id="pcp-practice"></div>
+                <div class="contact-detail"><strong>Phone:</strong> <input type="tel" class="form-input" id="pcp-phone"></div>
+                <div class="contact-detail"><strong>After-Hours:</strong> <input type="tel" class="form-input" id="pcp-afterhours"></div>
+                <div class="contact-detail"><strong>Address:</strong> <input type="text" class="form-input" id="pcp-address"></div>
+            </div>
+            
+            <div class="contact-item">
+                <h4>Dementia Specialist</h4>
+                <div class="contact-detail"><strong>Doctor Name:</strong> <input type="text" class="form-input" id="specialist-name"></div>
+                <div class="contact-detail"><strong>Specialty:</strong> <input type="text" class="form-input" id="specialist-type"></div>
+                <div class="contact-detail"><strong>Phone:</strong> <input type="tel" class="form-input" id="specialist-phone"></div>
+                <div class="contact-detail"><strong>After-Hours:</strong> <input type="tel" class="form-input" id="specialist-afterhours"></div>
+                <div class="contact-detail"><strong>Address:</strong> <input type="text" class="form-input" id="specialist-address"></div>
+            </div>
+            
+            <div class="contact-item">
+                <h4>Home Health Agency</h4>
+                <div class="contact-detail"><strong>Agency Name:</strong> <input type="text" class="form-input" id="agency-name"></div>
+                <div class="contact-detail"><strong>Case Manager:</strong> <input type="text" class="form-input" id="agency-manager"></div>
+                <div class="contact-detail"><strong>24-Hour Phone:</strong> <input type="tel" class="form-input" id="agency-phone"></div>
+                <div class="contact-detail"><strong>RN Supervisor:</strong> <input type="text" class="form-input" id="agency-rn"></div>
+            </div>
+            
+            <div class="contact-item">
+                <h4>Pharmacy</h4>
+                <div class="contact-detail"><strong>Pharmacy Name:</strong> <input type="text" class="form-input" id="pharmacy-name"></div>
+                <div class="contact-detail"><strong>Phone:</strong> <input type="tel" class="form-input" id="pharmacy-phone"></div>
+                <div class="contact-detail"><strong>Address:</strong> <input type="text" class="form-input" id="pharmacy-address"></div>
+                <div class="contact-detail"><strong>Pharmacist:</strong> <input type="text" class="form-input" id="pharmacist-name"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Insurance Information</h2>
+        <table class="insurance-table">
+            <thead>
+                <tr>
+                    <th>Insurance Type</th>
+                    <th>Company/Plan Name</th>
+                    <th>Policy/Member ID</th>
+                    <th>Group Number</th>
+                    <th>Phone Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Medicare</strong></td>
+                    <td><input type="text" id="medicare-company"></td>
+                    <td><input type="text" id="medicare-id"></td>
+                    <td><input type="text" id="medicare-group"></td>
+                    <td>1-800-MEDICARE</td>
+                </tr>
+                <tr>
+                    <td><strong>Medicare Supplement</strong></td>
+                    <td><input type="text" id="medsup-company"></td>
+                    <td><input type="text" id="medsup-id"></td>
+                    <td><input type="text" id="medsup-group"></td>
+                    <td><input type="tel" id="medsup-phone"></td>
+                </tr>
+                <tr>
+                    <td><strong>Medicaid</strong></td>
+                    <td><input type="text" id="medicaid-company"></td>
+                    <td><input type="text" id="medicaid-id"></td>
+                    <td><input type="text" id="medicaid-group"></td>
+                    <td><input type="tel" id="medicaid-phone"></td>
+                </tr>
+                <tr>
+                    <td><strong>Long-Term Care Insurance</strong></td>
+                    <td><input type="text" id="ltc-company"></td>
+                    <td><input type="text" id="ltc-id"></td>
+                    <td><input type="text" id="ltc-group"></td>
+                    <td><input type="tel" id="ltc-phone"></td>
+                </tr>
+                <tr>
+                    <td><strong>Veterans Benefits</strong></td>
+                    <td><input type="text" id="va-company"></td>
+                    <td><input type="text" id="va-id"></td>
+                    <td><input type="text" id="va-group"></td>
+                    <td>1-877-222-8387</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="critical-info">
+            <strong>Insurance Cards Location:</strong> <input type="text" class="form-input" id="cards-location"><br><br>
+            <strong>Pre-Authorization Required?</strong> <input type="text" class="form-input" id="preauth-required"><br><br>
+            <strong>Preferred Hospital Network:</strong> <input type="text" class="form-input" id="hospital-network">
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Support Services Contacts</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <h4>Area Agency on Aging</h4>
+                <div class="contact-detail"><strong>Agency Name:</strong> <input type="text" class="form-input" id="aaa-name"></div>
+                <div class="contact-detail"><strong>Case Manager:</strong> <input type="text" class="form-input" id="aaa-manager"></div>
+                <div class="contact-detail"><strong>Phone:</strong> <input type="tel" class="form-input" id="aaa-phone"></div>
+                <div class="contact-detail"><strong>Emergency Line:</strong> <input type="tel" class="form-input" id="aaa-emergency"></div>
+            </div>
+            
+            <div class="contact-item">
+                <h4>Geriatric Care Manager</h4>
+                <div class="contact-detail"><strong>Name:</strong> <input type="text" class="form-input" id="gcm-name"></div>
+                <div class="contact-detail"><strong>Company:</strong> <input type="text" class="form-input" id="gcm-company"></div>
+                <div class="contact-detail"><strong>Phone:</strong> <input type="tel" class="form-input" id="gcm-phone"></div>
+                <div class="contact-detail"><strong>Emergency:</strong> <input type="tel" class="form-input" id="gcm-emergency"></div>
+            </div>
+            
+            <div class="contact-item">
+                <h4>Elder Law Attorney</h4>
+                <div class="contact-detail"><strong>Attorney Name:</strong> <input type="text" class="form-input" id="attorney-name"></div>
+                <div class="contact-detail"><strong>Firm:</strong> <input type="text" class="form-input" id="attorney-firm"></div>
+                <div class="contact-detail"><strong>Phone:</strong> <input type="tel" class="form-input" id="attorney-phone"></div>
+                <div class="contact-detail"><strong>Assistant:</strong> <input type="text" class="form-input" id="attorney-assistant"></div>
+            </div>
+            
+            <div class="contact-item">
+                <h4>Social Worker</h4>
+                <div class="contact-detail"><strong>Name:</strong> <input type="text" class="form-input" id="sw-name"></div>
+                <div class="contact-detail"><strong>Agency:</strong> <input type="text" class="form-input" id="sw-agency"></div>
+                <div class="contact-detail"><strong>Phone:</strong> <input type="tel" class="form-input" id="sw-phone"></div>
+                <div class="contact-detail"><strong>Pager/Emergency:</strong> <input type="tel" class="form-input" id="sw-emergency"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Essential Resources & Hotlines</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <h4>24/7 Emergency Resources</h4>
+                <div class="contact-detail"><strong>911:</strong> Police, Fire, Medical Emergency</div>
+                <div class="contact-detail"><strong>Poison Control:</strong> 1-800-222-1222</div>
+                <div class="contact-detail"><strong>Crisis Text Line:</strong> Text HOME to 741741</div>
+                <div class="contact-detail"><strong>National Suicide Prevention:</strong> 988</div>
+            </div>
+            
+            <div class="contact-item">
+                <h4>Alzheimer's/Dementia Support</h4>
+                <div class="contact-detail"><strong>Alzheimer's Association:</strong> 1-800-272-3900</div>
+                <div class="contact-detail"><strong>24/7 Helpline:</strong> Available 24/7/365</div>
+                <div class="contact-detail"><strong>Local Chapter:</strong> <input type="text" class="form-input" id="alz-local"></div>
+                <div class="contact-detail"><strong>Support Group:</strong> <input type="text" class="form-input" id="support-group"></div>
+            </div>
+            
+            <div class="contact-item">
+                <h4>Insurance & Benefits</h4>
+                <div class="contact-detail"><strong>Medicare:</strong> 1-800-633-4227</div>
+                <div class="contact-detail"><strong>State Medicaid:</strong> <input type="tel" class="form-input" id="state-medicaid"></div>
+                <div class="contact-detail"><strong>Social Security:</strong> 1-800-772-1213</div>
+                <div class="contact-detail"><strong>Veterans Benefits:</strong> 1-877-222-8387</div>
+            </div>
+            
+            <div class="contact-item">
+                <h4>Local Emergency Services</h4>
+                <div class="contact-detail"><strong>Non-Emergency Police:</strong> <input type="tel" class="form-input" id="police-non-emergency"></div>
+                <div class="contact-detail"><strong>Fire Department:</strong> <input type="tel" class="form-input" id="fire-dept"></div>
+                <div class="contact-detail"><strong>Emergency Transport:</strong> <input type="tel" class="form-input" id="emergency-transport"></div>
+                <div class="contact-detail"><strong>Adult Protective Services:</strong> <input type="tel" class="form-input" id="aps"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Important Document Locations</h2>
+        <div class="notes-box">
+            <strong>Keep copies in multiple locations and inform key family members</strong>
+        </div>
+        
+        <div class="contact-detail"><strong>Medical Records:</strong> <input type="text" class="form-input" id="medical-records-location"></div>
+        <div class="contact-detail"><strong>Insurance Cards:</strong> <input type="text" class="form-input" id="insurance-cards-location"></div>
+        <div class="contact-detail"><strong>Power of Attorney (Healthcare):</strong> <input type="text" class="form-input" id="healthcare-poa-doc"></div>
+        <div class="contact-detail"><strong>Power of Attorney (Financial):</strong> <input type="text" class="form-input" id="financial-poa-doc"></div>
+        <div class="contact-detail"><strong>HIPAA Authorization Forms:</strong> <input type="text" class="form-input" id="hipaa-forms"></div>
+        <div class="contact-detail"><strong>Advanced Directives:</strong> <input type="text" class="form-input" id="advanced-directives"></div>
+        <div class="contact-detail"><strong>Do Not Resuscitate (DNR):</strong> <input type="text" class="form-input" id="dnr-location"></div>
+        <div class="contact-detail"><strong>Medication List:</strong> <input type="text" class="form-input" id="medication-list-location"></div>
+        <div class="contact-detail"><strong>Emergency Medical Information:</strong> <input type="text" class="form-input" id="emergency-medical-info"></div>
+    </div>
+
+    <div class="section">
+        <h2>Special Instructions</h2>
+        <div class="notes-box">
+            <strong>Communication Strategies:</strong><br>
+            How to best communicate with patient: <input type="text" class="form-input" id="communication-strategies"><br><br>
+            <strong>Behavioral Management:</strong><br>
+            Common triggers to avoid: <input type="text" class="form-input" id="triggers"><br>
+            Calming techniques that work: <input type="text" class="form-input" id="calming-techniques"><br><br>
+            <strong>Safety Concerns:</strong><br>
+            Wandering risk: <input type="text" class="form-input" id="wandering-risk"><br>
+            Fall risk: <input type="text" class="form-input" id="fall-risk"><br>
+            Other safety issues: <input type="text" class="form-input" id="other-safety"><br><br>
+            <strong>Additional Notes:</strong><br>
+            <textarea class="form-textarea" id="additional-notes" placeholder="Enter any additional important information..."></textarea>
+        </div>
+    </div>
+
+    <div class="print-friendly">
+        Print multiple copies of this contact sheet and keep them in easily accessible locations throughout the home, with caregivers, and in your car. Update regularly as contact information changes.
+        <br><br>
+        <strong>Last Updated:</strong> <input type="date" class="form-input" id="last-updated" style="width: 150px;"> | <strong>Updated By:</strong> <input type="text" class="form-input" id="updated-by" style="width: 200px;">
+    </div>
+
+    <script>
+        function saveData() {
+            const formData = {};
+            const inputs = document.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                if (input.id) {
+                    formData[input.id] = input.value;
+                }
+            });
+            
+            const dataStr = JSON.stringify(formData, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'emergency_contact_template.json';
+            link.click();
+            URL.revokeObjectURL(url);
+            
+            alert('✅ Emergency contact information saved! The file has been downloaded to your device.');
+        }
+        
+        function loadData() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        try {
+                            const data = JSON.parse(e.target.result);
+                            Object.keys(data).forEach(key => {
+                                const element = document.getElementById(key);
+                                if (element) {
+                                    element.value = data[key];
+                                }
+                            });
+                            alert('✅ Emergency contact information loaded successfully!');
+                        } catch (error) {
+                            alert('❌ Error loading file. Please make sure it\'s a valid emergency contact template file.');
+                        }
+                    };
+                    reader.readAsText(file);
+                }
+            };
+            input.click();
+        }
+        
+        function clearForm() {
+            if (confirm('Are you sure you want to clear all fields? This cannot be undone.')) {
+                const inputs = document.querySelectorAll('input, textarea');
+                inputs.forEach(input => {
+                    if (input.type !== 'button') {
+                        input.value = '';
+                    }
+                });
+                alert('✅ All fields have been cleared.');
+            }
+        }
+        
+        // Auto-save to browser storage every 30 seconds
+        setInterval(() => {
+            if (document.querySelector('input').value.trim() !== '') {
+                const formData = {};
+                const inputs = document.querySelectorAll('input,
